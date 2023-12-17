@@ -3,45 +3,82 @@ import Wrapper from '@/components/Wrapper'
 import CartItem from '@/components/CartItem'
 import useCartStore from './cartStore'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
+import Link from 'next/link'
 
 
 const page = () => {
-  const {data}=useCartStore();
+  const {calculatedAmount,data,setCalculatedAmount}=useCartStore();
+  let sum = 0,q=0;
+  let formattedSum;
+  // Iterate through data array and accumulate prices
+  useEffect(() => {
+    // Calculate the amount
+    data.forEach((item) => {
+      sum += item.price * item.quantity || 0;
+      q += item.quantity || 0; // Make sure item.price is defined
+    });
+  
+     formattedSum = sum.toFixed(2);
+  
+    // Store the calculated amount in Zustand
+    setCalculatedAmount(formattedSum);
+  }, [data]);
+  //to calculate the quantity
+  data.forEach((item) => {    
+    q += item.quantity || 0; // Make sure item.price is defined
+  });
+  
+  // setCalculatedAmount(formattedSum);
   return (
     <div className="w-full md:py-20">
      <Wrapper>
         
      <div className="text-center max-w-[800px] mx-auto mt-8 md:mt-0">
-        <div className="text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
+        <div className="text-[28px] md:text-[34px] mb-5 font-bold leading-tight">
             Shopping Cart
+            
          </div>
        </div>
       <div className="flex flex-col lg:flex-row gap-12 py-10">
         <div className="flex-[2]">
-            <div className="text-lg font-bold">Cart Items</div>
+            <div className="text-lg font-bold pb-5">Cart Items</div>
                 <CartItem/>
         </div>
 
         <div className="flex-[1]">
             <div className="text-lg font-bold">Summary</div>
-             <div className="p-5 my-5 bg-black/[0.05] rounded-xl">
+             <div className="p-5 my-5 bg-black/[0.05] rounded-xl  shadow-md hover:shadow-lg ">
                 <div className="flex justify-between">
-                  <div className="uppercase text-md md:text-lg font-medium text-black">Subtotal</div>
-                  <div className="text-md md:text-lgfont-medium text-black">1234</div>
+                <div className="uppercase text-md md:text-lg font-medium text-black">Order Amount</div>
+                  <div className="text-md md:text-lg font-medium text-black"><span>₹</span>{calculatedAmount}</div>
+                  
                 </div>
                 <div className="text-sm md:text-md py-5 border-t mt-5">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi itaque quis mollitia earum, quae, nostrum possimus omnis molestiae corporis quibusdam assumenda explicabo quidem harum laboriosam cupiditate quaerat saepe natus ullam error iste enim unde!
+                <div className="flex justify-between">
+                <div className=" text-md md:text-lg font-medium text-black/[0.5]">Total Quantity</div>
+                  <div className="text-md md:text-lg font-sm text-black/[0.5]">{q} Items</div>
+                </div>
+                <div className="flex justify-between">
+                <div className=" text-md md:text-sm font-sm text-black/[0.5]">Coupon</div>
+                  <div className="text-md md:text-sm font-sm text-pink-800 hover:cursor-pointer hover:opacity-75 ">Apply Coupon</div>
+                </div>
+              
              </div>
-                
+             <span className="flex items-center gap-2 justify-center text-sm text-black/[0.5]">Click on CheckOut to proceed...</span>
              </div>
-             <button className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center">
-             Checkout
-             </button>      
+             <Link href="/payment">
+             <button className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 flex items-center gap-2 justify-center 
+              ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-black/[0.5] duration-300 ">
+                     Checkout
+             </button> 
+             </Link>
+                  
         </div>
+       
+     
       </div>
-     
-     
+      {/* <div className='flex justify-center'>or Continue Shopping....</div> */}
      
       {/* EMPTY SCREEN */}
       {/* {data.length<1 && (
