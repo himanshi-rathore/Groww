@@ -31,6 +31,7 @@ const page = () => {
   
   // setCalculatedAmount(formattedSum);
   return (
+    <>
     <div className="w-full md:py-20">
      <Wrapper>
         
@@ -40,7 +41,7 @@ const page = () => {
             
          </div>
        </div>
-      <div className="flex flex-col lg:flex-row gap-12 py-10">
+      <div className="flex flex-col lg:flex-row gap-12 ">
         <div className="flex-[2]">
             <div className="text-lg font-bold pb-5">Cart Items</div>
                 <CartItem/>
@@ -48,9 +49,9 @@ const page = () => {
 
         <div className="flex-[1]">
             <div className="text-lg font-bold">Summary</div>
-             <div className="p-5 my-5 bg-black/[0.05] rounded-xl  shadow-md hover:shadow-lg ">
+             <div className="p-5 my-5 rounded-xl  shadow-md hover:shadow-lg ">
                 <div className="flex justify-between">
-                <div className="uppercase text-md md:text-lg font-medium text-black">Order Amount</div>
+                <div className=" text-md md:text-lg font-medium text-black">Order Amount</div>
                   <div className="text-md md:text-lg font-medium text-black"><span>₹</span>{calculatedAmount}</div>
                   
                 </div>
@@ -68,7 +69,7 @@ const page = () => {
              <span className="flex items-center gap-2 justify-center text-sm text-black/[0.5]">Click on CheckOut to proceed...</span>
              </div>
              <Link href="/payment">
-             <button className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 flex items-center gap-2 justify-center 
+             <button className="w-52 py-3 rounded-full bg-indigo-600 text-white text-lg font-medium transition-transform active:scale-95 mb-3 mx-20 flex items-center gap-2 justify-center 
               ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-black/[0.5] duration-300 ">
                      Checkout
              </button> 
@@ -103,6 +104,7 @@ const page = () => {
       ) } */}
      </Wrapper>
     </div>
+    </>
   )
 }
 

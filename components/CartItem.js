@@ -18,7 +18,7 @@ const CartItem = () => {
   return (
     <div>
       {data.map((item) => (
-        <div key={item.id} className="flex py-5 gap-3 md:gap-5 border-b  bg-black/[0.05] mb-3 rounded-xl shadow-md hover:shadow-lg  ">
+        <div key={item.id} className="flex sm:flex-shrink py-5 gap-3 md:gap-5 border-b  mb-3 rounded-xl shadow-md hover:shadow-lg  ">
           {/* Image */}
           <div className="shrink-0 aspect-square w-[50px] md:w-[120px]">
             {/* <img src={item.image} alt={item.title} className="w-full h-full object-cover" /> */}
@@ -34,7 +34,7 @@ const CartItem = () => {
 
           <div className="w-full flex flex-col">
             <div className="flex flex-col md:flex-row justify-between px-7">
-              <div className="text-lg md:text-1xl  text-black/[0.8]">
+              <div className="text-lg md:text-1xl  text-black/[0.8] sm:overflow-clip">
                 {/* product title */} {item.title}
               </div>
 
