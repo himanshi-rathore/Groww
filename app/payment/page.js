@@ -6,18 +6,8 @@ import PaymentModes from './PaymentModes';
 // import Link from 'next/link';
 import Image from 'next/image';
 
-const page = () => {
-  // const {pay}=useCartStore();
-  // const {data}=useCartStore();
-  // let sum = 0,q=0;
-
-  // // Iterate through data array and accumulate prices
-  // data.forEach((item) => {
-  //   sum += item.price*item.quantity || 0; 
-  //   q+=item.quantity|| 0// Make sure item.price is defined
-  // });
-  // console.log(sum);
-  // const formattedSum = sum.toFixed(2);
+const Page = () => {
+ 
 
   return (
     <div className="w-full md:py-20">
@@ -42,6 +32,6 @@ const page = () => {
   )
 };
 
-export default page
+export default Page
 
 

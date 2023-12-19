@@ -7,7 +7,7 @@ import React, { useEffect } from 'react'
 import Link from 'next/link'
 
 
-const page = () => {
+const Page = () => {
   const {calculatedAmount,data,setCalculatedAmount}=useCartStore();
   let sum = 0,q=0;
   let formattedSum;
@@ -108,4 +108,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -13,7 +13,7 @@ import Upi from './Upi';
 
 
 
-const page = () => {
+const Page = () => {
   
   const {calculatedAmount, fetchData,selectedPaymentMode } = useCartStore();
   
@@ -68,6 +68,6 @@ const page = () => {
     </div>
   );
 };
-export default page
+export default Page
 
 
