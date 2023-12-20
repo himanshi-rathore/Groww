@@ -1,9 +1,7 @@
 "use client"
 import Wrapper from '@/components/Wrapper'
 import React from 'react'
-// import useCartStore from '../cartStore'
 import PaymentModes from './PaymentModes';
-// import Link from 'next/link';
 import Image from 'next/image';
 
 const Page = () => {
