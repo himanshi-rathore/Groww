@@ -2,22 +2,14 @@
 import Wrapper from '@/components/Wrapper'
 import React, { useEffect } from 'react'
 import useCartStore from '../cartStore'
-
-// import PaymentModes from './PaymentModes';
 import Link from 'next/link';
 import Card from './Card';
 import Upi from './Upi';
 
 
-
-
-
-
 const Page = () => {
   
-  const {calculatedAmount, fetchData,selectedPaymentMode } = useCartStore();
-  
- 
+  const {calculatedAmount, fetchData,selectedPaymentMode } = useCartStore(); 
   
   useEffect(() => {
     fetchData(); // Call fetchData when the component is mounted
@@ -53,12 +45,6 @@ const Page = () => {
             </div>
             <span className="flex items-center gap-2 justify-center text-sm text-black/[0.7]">Click on Make Payment to proceed...</span>
           </div>
-          {/* <Link href="/success">
-            <button className="w-full py-3 rounded-full bg-indigo-500 text-white text-lg font-medium  mb-3 flex items-center gap-2 justify-center 
-              hover:bg-black/[0.5] shadow-md hover:shadow-lg  ">
-              Make Payment
-            </button>
-          </Link> */}
         </div>
         <div className='flex-[1] mr-5 mt-7 ml-6'>
           {selectedPaymentMode==="UPI"?<Upi/>:<Card/>}
