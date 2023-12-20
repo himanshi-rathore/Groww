@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -6,6 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Input } from '@/components/ui/input';
 import Image from 'next/image';
 import Link from 'next/link';
+import useCartStore from '../cartStore';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -24,35 +25,37 @@ const formSchema = z.object({
       'Invalid CVV number. Please enter a valid 3-digit card number.'
     ),
   date: z
-    .date()
-    .refine((value) => !isNaN(new Date(value).getTime())),
+  .string()
+    .refine((value) => !isNaN(new Date(value))),
 });
 
 const Card = () => {
-
-
-  
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       num: '',
-      date: new Date().toISOString().substr(0, 10),
+      date: new Date(),
       cvv: '',
     },
   });
 
-  const handleBlur = (field) => form.trigger(field);
-  
+  const isCardValid = useCartStore((state) => state.isCardValid);
+  const setValidCard = useCartStore((state) => state.setValidCard);
+
+  const handleBlur = (field) => {
+    form.trigger(field);
+    setValidCard(form.formState.isValid);
+  };
+
+  const getLinkHref = () => {
+    // Return a random link based on some condition
+    return isCardValid ? (Math.random() > 0.5 ? '/success' : '/failed') : '/pending';
+  };
 
   return (
-    <>
-   
     <div className="p-5 my-5  bg-white border border-gray-300 rounded-xl shadow-md hover:shadow-lg max-w-md mx-auto">
-   
-    <Image src="/cardImage.png" width={100} height={10} className='ml-15' />
-    {/* <div className='text-[20px] md:text-[24px] font-semibold ml-5 mt-5 leading-tight'>Card</div> */}
-    
+      <Image src="/cardImage.png" width={100} height={10} className='ml-15' />
       <Form {...form}>
         <form>
           <FormField
@@ -107,7 +110,7 @@ const Card = () => {
                       type="date"
                       placeholder="Expiration Date"
                       {...field}
-                    
+                      onBlur={() => handleBlur('date')}
                       className="input-field m-2"
                     />
                   </FormControl>
@@ -134,20 +137,21 @@ const Card = () => {
               )}
             />
           </div>
-          <Link href="/success">
-    <button
-      
-      type="submit"
-      className="w-full py-4 rounded-full bg-indigo-600 text-white text-lg font-medium transition-transform"
-      
-    >
-      Make Payment
-    </button>
-  </Link>
         </form>
       </Form>
+      <Link href={getLinkHref()}>
+        <button
+          type="button"
+          onClick={() => handleBlur('name')}
+          onBlur={() => handleBlur('name')}
+          disabled={!form.formState.isDirty || !form.formState.isValid}
+          className={`w-full md:w-1/2 py-2 mt-3 rounded-full ${isCardValid ? 'bg-indigo-500' : 'bg-gray-300 cursor-not-allowed'} text-white text-sm font-sm mb-3 flex items-center gap-2 justify-center 
+              hover:bg-black/[0.5] shadow-md hover:shadow-lg`}
+        >
+          Make Payment
+        </button>
+      </Link>
     </div>
-    </>
   );
 };
 
