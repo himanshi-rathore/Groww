@@ -24,10 +24,7 @@ const Page = () => {
     // Store the calculated amount in Zustand
     setCalculatedAmount(formattedSum);
   }, [data]);
-  //to calculate the quantity
-  // data.forEach((item) => {
-  //   q += item.quantity || 0; // Make sure item.price is defined
-  // });
+  
 
   if (calculatedAmount === 0) {
     return (
@@ -57,7 +54,7 @@ const Page = () => {
     );
   }
 
-  // setCalculatedAmount(formattedSum);
+ 
   return (
     <>
       <div className="w-full md:py-20">
@@ -117,29 +114,7 @@ const Page = () => {
               </Link>
             </div>
           </div>
-          {/* <div className='flex justify-center'>or Continue Shopping....</div> */}
-
-          {/* EMPTY SCREEN */}
-          {/* {data.length<1 && (
-
-        <div className="flex-[2] flex flex-col items-center pb-[50px] md:mt-14">
-        <Image
-          src="/empty_cart.jpg"
-          width={300}
-          height={300}
-          className="w-[300px] md:w-[400px]"
-        />
-        <span className="text-xl font-bold"> Your cart is Empty</span>
-        <span className="text-center mt-4">
-          Add some products to your shopping bag and we will show them here!
-          <br/>Go ahead and explore more!
-        </span>
-        <button className="py-4 px-8 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 mt-8">
-                Continue Shopping
-        </button>
-      </div>
-
-      ) } */}
+     
         </Wrapper>
       </div>
     </>
