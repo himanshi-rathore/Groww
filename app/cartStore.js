@@ -6,6 +6,7 @@ const useCartStore = create((set) => ({
   // formattedSum: 0,
   selectedPaymentMode: null,
   calculatedAmount: 0,
+  calQ:0,
   isUpiValid: false,
   isCardValid: false,
   fetchData: async () => {
@@ -26,6 +27,7 @@ const useCartStore = create((set) => ({
     }
   },
   setSelectedPaymentMode: (mode) => set({ selectedPaymentMode: mode }),
+  setCalQ:(quantity)=>set({calQ:quantity}),
   setCalculatedAmount: (amount) => set({ calculatedAmount: amount }),
   setValidUpi: (isValid) => set({ isUpiValid: isValid }),
   setValidCard: (isValid) => set({ isCardValid: isValid }),
