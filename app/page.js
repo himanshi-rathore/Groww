@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 
 const Page = () => {
-  const { calculatedAmount, data, setCalculatedAmount } = useCartStore();
+  const { calculatedAmount, data, setCalculatedAmount, calQ,setCalQ } = useCartStore();
   let sum = 0,
     q = 0;
   let formattedSum;
@@ -23,9 +23,9 @@ const Page = () => {
 
     // Store the calculated amount in Zustand
     setCalculatedAmount(formattedSum);
+    setCalQ(q);
   }, [data]);
-  
-
+ 
   if (calculatedAmount === 0) {
     return (
       <div className="w-full md:py-20">
@@ -54,7 +54,7 @@ const Page = () => {
     );
   }
 
- 
+
   return (
     <>
       <div className="w-full md:py-20">
@@ -88,7 +88,7 @@ const Page = () => {
                       Total Quantity
                     </div>
                     <div className="text-md md:text-md font-sm text-black/[0.5]">
-                      {q} Items
+                      {calQ} Items
                     </div>
                   </div>
                   <div className="flex justify-between">
@@ -114,7 +114,6 @@ const Page = () => {
               </Link>
             </div>
           </div>
-     
         </Wrapper>
       </div>
     </>
