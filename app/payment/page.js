@@ -10,11 +10,11 @@ const Page = () => {
   return (
     <div className="w-full md:py-20">
       <Wrapper>
-      <div className="text-center max-w-[800px] mx-auto ml-10 mt-8 md:mt-0 flex justify-center">
-        <div className="text-[15px] md:text-[28px] mb-5 font-bold leading-tight ml-7 pt-10">
+      <div className="text-center max-w-[800px] mx-auto  mt-8 flex justify-center">
+        <div className="text-[18px] ml-10 mt-7 md:mt-4 md:text-[23px] mb-5 font-bold leading-tight">
             Choose Payment Mode
          </div>
-         <div className="p-5 pr-0">
+         <div className="p-5 pt-0 pr-0">
           <Image src="/payment-method.png" width={75} height={75}  />
          </div>
        </div>
